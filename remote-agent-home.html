@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Remote Agent - Connect with Top Freelancers</title>
+  <meta name="description" content="Remote Agent: Find top freelance talent or remote gigs. Where businesses and agents connect, work, and succeed.">
+  <style>
+    :root {
+      --primary: #1a73e8;
+      --primary-dark: #1253a2;
+      --secondary: #ffb300;
+      --bg: #f8fbff;
+      --text: #23272f;
+      --muted: #6b7280;
+      --border: #e0e7ef;
+      --radius: 12px;
+      --shadow: 0 4px 24px rgba(30,42,90,0.12);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+    header {
+      background: #fff;
+      box-shadow: var(--shadow);
+      padding: 0.5rem 0;
+      position: sticky; top: 0; z-index: 10;
+    }
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0 1.5rem;
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: -1px;
+    }
+    nav a {
+      color: var(--muted);
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.18s;
+    }
+    nav a:hover {
+      color: var(--primary-dark);
+    }
+    .nav-actions button {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 0.5rem 1.3rem;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: 600;
+      margin-left: 0.5rem;
+      transition: background 0.18s;
+    }
+    .nav-actions button.secondary {
+      background: #fff;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+    .nav-actions button:hover {
+      background: var(--primary-dark);
+      color: #fff;
+    }
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      padding: 3rem 0 2rem 0;
+      gap: 2.5rem;
+    }
+    .hero-content {
+      flex: 1 1 350px;
+    }
+    .hero-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin: 0 0 1rem 0;
+      color: var(--primary-dark);
+      line-height: 1.2;
+    }
+    .hero-desc {
+      font-size: 1.25rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      max-width: 550px;
+    }
+    .hero-buttons button {
+      font-size: 1.1rem;
+      padding: 0.7rem 1.6rem;
+      margin-right: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    .hero-image {
+      flex: 1 1 350px;
+      text-align: center;
+    }
+    .hero-image img {
+      max-width: 100%;
+      width: 350px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      background: #fff;
+    }
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-top: 3rem;
+      margin-bottom: 1.3rem;
+      text-align: center;
+      letter-spacing: -1px;
+    }
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin-bottom: 3.5rem;
+    }
+    .feature {
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2rem 1.5rem;
+      flex: 1 1 260px;
+      max-width: 320px;
+      min-width: 240px;
+      text-align: center;
+      border-bottom: 4px solid var(--primary);
+      transition: transform 0.13s;
+    }
+    .feature:hover {
+      transform: translateY(-4px) scale(1.03);
+      border-bottom: 4px solid var(--secondary);
+    }
+    .feature-icon {
+      font-size: 2.2rem;
+      margin-bottom: 0.8rem;
+      color: var(--primary);
+    }
+    .feature-title {
+      font-size: 1.18rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .feature-desc {
+      color: var(--muted);
+      font-size: 1rem;
+    }
+    .how-it-works {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      align-items: flex-start;
+      margin-bottom: 3.5rem;
+    }
+    .step {
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.7rem 1.3rem;
+      flex: 1 1 200px;
+      max-width: 240px;
+      min-width: 170px;
+      text-align: center;
+      border-top: 4px solid var(--secondary);
+    }
+    .step-number {
+      width: 36px; height: 36px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1rem;
+      margin-bottom: 0.6rem;
+    }
+    .step-title {
+      font-size: 1.13rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+    .step-desc {
+      color: var(--muted);
+      font-size: 0.97rem;
+    }
+    .cta {
+      background: var(--primary);
+      color: #fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2.2rem 1.5rem;
+      text-align: center;
+      margin: 3rem auto 2.5rem auto;
+      max-width: 600px;
+    }
+    .cta-title {
+      font-size: 1.7rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .cta button {
+      background: #fff;
+      color: var(--primary);
+      border: none;
+      border-radius: 6px;
+      padding: 0.8rem 1.8rem;
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-top: 1rem;
+      cursor: pointer;
+      transition: background 0.16s, color 0.16s;
+    }
+    .cta button:hover {
+      background: var(--secondary);
+      color: #fff;
+    }
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.98rem;
+      padding: 2rem 0 1.3rem 0;
+      background: #fff;
+      border-top: 1px solid var(--border);
+    }
+    /* Responsive design */
+    @media (max-width: 900px) {
+      .hero, .features, .how-it-works {
+        flex-direction: column;
+        align-items: center;
+      }
+      .hero-image img { width: 80vw; max-width: 370px; }
+    }
+    @media (max-width: 600px) {
+      .container { padding: 0 0.6rem; }
+      .hero-title { font-size: 1.6rem; }
+      .section-title { font-size: 1.3rem; }
+      .feature, .step, .cta { padding: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <span class="logo">Remote Agent</span>
+      <nav>
+        <a href="#">Home</a>
+        <a href="#features">Features</a>
+        <a href="#how">How It Works</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <button onclick="alert('Sign In coming soon!')">Sign In</button>
+        <button class="secondary" onclick="alert('Sign Up coming soon!')">Sign Up</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container hero">
+      <div class="hero-content">
+        <h1 class="hero-title">Hire Top Talent, Work Remotely, Succeed Together</h1>
+        <p class="hero-desc">
+          Remote Agent connects businesses with expert freelancers and remote professionals across the globe. Whether you need a designer, developer, marketer, or virtual assistant—find the right agent for your project, fast.
+        </p>
+        <div class="hero-buttons">
+          <button onclick="alert('Find Talent coming soon!')">Find Talent</button>
+          <button class="secondary" onclick="alert('Find Work coming soon!')">Find Work</button>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=700&q=80" alt="Remote work illustration">
+      </div>
+    </div>
+
+    <h2 class="section-title" id="features">Why Remote Agent?</h2>
+    <div class="container features">
+      <div class="feature">
+        <div class="feature-icon">🌍</div>
+        <div class="feature-title">Global Talent Pool</div>
+        <div class="feature-desc">Access thousands of vetted freelancers and remote professionals from around the world.</div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🔒</div>
+        <div class="feature-title">Secure Payments</div>
+        <div class="feature-desc">Safe, escrow-protected payments for every project, with support for multiple payment options.</div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🤝</div>
+        <div class="feature-title">Easy Collaboration</div>
+        <div class="feature-desc">Built-in messaging and file sharing tools to streamline communication and workflow.</div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">⭐</div>
+        <div class="feature-title">Verified Reviews</div>
+        <div class="feature-desc">Ratings and feedback help you hire with confidence, every time.</div>
+      </div>
+    </div>
+
+    <h2 class="section-title" id="how">How It Works</h2>
+    <div class="container how-it-works">
+      <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-title">Post or Browse Jobs</div>
+        <div class="step-desc">Create a project or explore open gigs that match your skills and interests.</div>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-title">Connect & Collaborate</div>
+        <div class="step-desc">Chat, share files, and collaborate in real time—all from your dashboard.</div>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-title">Work & Get Paid</div>
+        <div class="step-desc">Complete projects, leave reviews, and receive secure payments via our platform.</div>
+      </div>
+    </div>
+
+    <div class="container cta" id="contact">
+      <div class="cta-title">Ready to get started?</div>
+      <div>Join Remote Agent today to find work or hire top remote talent—quickly, safely, and globally.</div>
+      <button onclick="alert('Sign Up coming soon!')">Sign Up Now</button>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 Remote Agent &mdash; Inspired by platforms like Fiverr and Upwork. <br>
+    Built for the future of remote work.
+  </footer>
+  
+  <script>
+    // Simple smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if(target) {
+          e.preventDefault();
+          window.scroll({
+            top: target.offsetTop - 64, // header height offset
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    // CTA animation
+    window.addEventListener('DOMContentLoaded', () => {
+      const cta = document.querySelector('.cta');
+      cta.style.opacity = 0;
+      cta.style.transform = 'translateY(40px)';
+      setTimeout(() => {
+        cta.style.transition = 'all 0.8s cubic-bezier(.6,.2,.1,1)';
+        cta.style.opacity = 1;
+        cta.style.transform = 'translateY(0)';
+      }, 350);
+    });
+  </script>
+</body>
+</html>
