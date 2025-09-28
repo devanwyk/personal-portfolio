@@ -1,0 +1,30 @@
+name = input("Enter your full name: ")
+
+result =len(name)
+
+print(result)
+
+result = name.find(" ")
+
+print(result)
+
+print(name.capitalize())
+print(name.upper())
+print(name.lower())
+print(name.title())
+print(name.strip())
+print(name.replace(" ", "_"))
+print(name.split(" "))
+print(name.startswith("A"))
+print(name.endswith("m"))
+print(name.isnumeric())
+print(name.isalpha())
+print(name.count("a"))
+print(name.index("a"))
+print(name.rindex("a"))
+print(name.islower())
+print(name.isupper())
+print(name.istitle())
+print(name.isprintable())
+print(name.isspace())
+print(name.swapcase())
